@@ -139,8 +139,8 @@ edupath/
       Backend
     </td>
     <td align="center">
-      <a href="https://github.com/shadik-username">
-        <img src="https://github.com/shadik-username.png" width="80" style="border-radius:50%"><br>
+      <a href="https://github.com/antu4742">
+        <img src="https://github.com/antu4742.png" width="80" style="border-radius:50%"><br>
         <b>Shadik Hasan</b>
       </a><br>
       Frontend
@@ -153,8 +153,8 @@ edupath/
       Frontend
     </td>
     <td align="center">
-      <a href="https://github.com/nirob-username">
-        <img src="https://github.com/nirob-username.png" width="80" style="border-radius:50%"><br>
+      <a href="https://github.com/nbanik-dev">
+        <img src="https://github.com/nbanik-dev.png" width="80" style="border-radius:50%"><br>
         <b>Nirob Chandra Banik</b>
       </a><br>
       Database
