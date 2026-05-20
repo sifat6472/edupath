@@ -126,7 +126,7 @@ This project was built by a team of 5 as a collaborative software engineering pr
 
 | Member | Role | Responsibilities |
 |--------|------|------------------|
-| **Nafis** | Team Lead / Backend & Integration | Backend logic, API writing, full project integration |
+| **S.M. Sifatul Islam** | Team Lead / Backend & Integration | Backend logic, API writing, full project integration |
 | **Junayed Hossain** | Backend Developer | Backend development |
 | **Shadik Hasan** | Frontend Developer | UI/UX implementation, frontend |
 | **Kazi Md. Juhaer Akhtab** | Frontend Developer | UI/UX implementation, frontend |
