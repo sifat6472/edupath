@@ -21,16 +21,16 @@ EduPath helps students discover and apply to academic programs, scholarships, an
 
 ### ✨ Features
 
-- 🌐 **Global Program Search** — Browse programs across universities with advanced filters
-- 🎓 **Scholarship Aggregation** — Find funding with smart eligibility checking
-- 👨‍🏫 **Professor & Lab Discovery** — Connect directly with researchers via email
-- 📋 **Application Tracking** — Visual progress bars and deadline reminders
-- 📊 **Student Dashboard** — Glassmorphism cards, animated widgets
-- 🔔 **Notification System** — Real-time updates with floating panel
-- ⭐ **Saved Opportunities** — Bookmark programs, scholarships, professors
-- 📱 **Fully Responsive** — Mobile-first design
-- 🍎 **iOS-Style Animations** — Smooth success popups with shake effect
-- 🔐 **Role-Based Access Control** — Student / Admin / Professor roles
+- **Global Program Search** — Browse programs across universities with advanced filters
+- **Scholarship Aggregation** — Find funding with smart eligibility checking
+- **Professor & Lab Discovery** — Connect directly with researchers via email
+- **Application Tracking** — Visual progress bars and deadline reminders
+- **Student Dashboard** — Glassmorphism cards, animated widgets
+- **Notification System** — Real-time updates with floating panel
+- **Saved Opportunities** — Bookmark programs, scholarships, professors
+- **Fully Responsive** — Mobile-first design
+- **iOS-Style Animations** — Smooth success popups with shake effect
+- **Role-Based Access Control** — Student / Admin / Professor roles
 
 ---
 
