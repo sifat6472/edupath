@@ -122,15 +122,45 @@ edupath/
 
 ## 👥 Team
 
-This project was built by a team of 5 as a collaborative software engineering project.
-
-| Member | Role | Responsibilities |
-|--------|------|------------------|
-| **S.M. Sifatul Islam** | Team Lead / Backend & Integration | Backend logic, API writing, full project integration |
-| **Junayed Hossain** | Backend Developer | Backend development |
-| **Shadik Hasan** | Frontend Developer | UI/UX implementation, frontend |
-| **Kazi Md. Juhaer Akhtab** | Frontend Developer | UI/UX implementation, frontend |
-| **Nirob Chandra Banik** | Database Engineer | Database design, table architecture, schema |
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/sifat6472">
+        <img src="https://github.com/sifat6472.png" width="80" style="border-radius:50%"><br>
+        <b>Nafis Islam</b>
+      </a><br>
+      Team Lead / Backend
+    </td>
+    <td align="center">
+      <a href="https://github.com/junayed-username">
+        <img src="https://github.com/junayed-username.png" width="80" style="border-radius:50%"><br>
+        <b>Junayed Hossain</b>
+      </a><br>
+      Backend
+    </td>
+    <td align="center">
+      <a href="https://github.com/shadik-username">
+        <img src="https://github.com/shadik-username.png" width="80" style="border-radius:50%"><br>
+        <b>Shadik Hasan</b>
+      </a><br>
+      Frontend
+    </td>
+    <td align="center">
+      <a href="https://github.com/juhaer-username">
+        <img src="https://github.com/juhaer-username.png" width="80" style="border-radius:50%"><br>
+        <b>Juhaer Akhtab</b>
+      </a><br>
+      Frontend
+    </td>
+    <td align="center">
+      <a href="https://github.com/nirob-username">
+        <img src="https://github.com/nirob-username.png" width="80" style="border-radius:50%"><br>
+        <b>Nirob Chandra Banik</b>
+      </a><br>
+      Database
+    </td>
+  </tr>
+</table>
 
 ---
 
