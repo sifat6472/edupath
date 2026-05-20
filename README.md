@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎓 EduPath — Global Education Platform
+# 🎓 EduPath — A Centralized Platform for Global Academic Applications
 
 ### Your Path to Global Education Starts Here
 
