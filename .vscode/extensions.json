@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "bmewburn.vscode-intelephense-client",
+        "qwtel.sqlite-viewer",
+        "ritwickdey.liveserver",
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens"
+    ]
+}

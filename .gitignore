@@ -1,0 +1,37 @@
+# Database files (auto-generated)
+/storage/*.sqlite
+/storage/*.sqlite3
+
+# Logs
+/storage/logs/*.log
+*.log
+
+# Environment & secrets
+.env
+.env.local
+config/secrets.php
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+*.tmp
+*.cache
+/tmp/
+
+# Keep these empty folders
+!/storage/.gitkeep
+!/storage/logs/.gitkeep
