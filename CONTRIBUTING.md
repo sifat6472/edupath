@@ -20,7 +20,7 @@ Use clear, descriptive branch names with these prefixes:
 | `docs/` | Documentation | `docs/update-readme` |
 
 **Per-member suggested branches:**
-- Nafis → `backend/api-integration`, `feature/*`
+- Sifat → `backend/api-integration`, `feature/*`
 - Junayed → `backend/*`
 - Shadik → `frontend/*`
 - Juhaer → `frontend/*`
