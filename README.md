@@ -127,13 +127,13 @@ edupath/
     <td align="center">
       <a href="https://github.com/sifat6472">
         <img src="https://github.com/sifat6472.png" width="80" style="border-radius:50%"><br>
-        <b>Nafis Islam</b>
+        <b>S.M. Sifatul Islam</b>
       </a><br>
       Team Lead / Backend
     </td>
     <td align="center">
-      <a href="https://github.com/junayed-username">
-        <img src="https://github.com/junayed-username.png" width="80" style="border-radius:50%"><br>
+      <a href="https://github.com/junayedJ95">
+        <img src="https://github.com/junayedJ95.png" width="80" style="border-radius:50%"><br>
         <b>Junayed Hossain</b>
       </a><br>
       Backend
@@ -146,9 +146,9 @@ edupath/
       Frontend
     </td>
     <td align="center">
-      <a href="https://github.com/juhaer-username">
-        <img src="https://github.com/juhaer-username.png" width="80" style="border-radius:50%"><br>
-        <b>Juhaer Akhtab</b>
+      <a href="https://github.com/juhaer-10">
+        <img src="https://github.com/juhaer-10.png" width="80" style="border-radius:50%"><br>
+        <b>Kazi Md. Juhaer Akhtab</b>
       </a><br>
       Frontend
     </td>
