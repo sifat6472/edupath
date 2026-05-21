@@ -1,3 +1,8 @@
 <?php
+
 namespace App\Models;
-class Application extends Model { protected static string $table = 'applications'; }
+
+// Tracks student applications to universities and scholarship programs
+
+class Application extends Model
+ { protected static string $table = 'applications'; }
