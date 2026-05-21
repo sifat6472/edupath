@@ -31,8 +31,12 @@ $view_instance->startSection('content');
             </div>
         </div>
         <div class="hero-image">
-            <div class="hero-image-main" style="background-image: linear-gradient(135deg, rgba(30,58,138,0.4), rgba(59,130,246,0.4)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80')"></div>
-            <div class="hero-image-sub" style="background-image: linear-gradient(135deg, rgba(251,191,36,0.3), rgba(245,158,11,0.3)), url('https://images.unsplash.com/photo-1532012197267-da84d127e765?w=600&q=80')"></div>
+            <div class="hero-image-main">
+                <img src="/images/graduation-main.webp" alt="Graduating students celebrating" loading="lazy">
+            </div>
+            <div class="hero-image-sub">
+                <img src="/images/graduate-student.avif" alt="Graduate with diploma" loading="lazy">
+            </div>
         </div>
     </div>
 </section>
@@ -109,7 +113,11 @@ $view_instance->startSection('content');
             </div>
         </div>
         <div style="text-align: center; margin-top: 40px;">
-            <a href="/register" class="btn btn-primary btn-lg">Get Started Today</a>
+            <?php if ($auth->check()): ?>
+                <a href="/dashboard" class="btn btn-primary btn-lg">Go to Dashboard</a>
+            <?php else: ?>
+                <a href="/register" class="btn btn-primary btn-lg">Get Started Today</a>
+            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -117,9 +125,15 @@ $view_instance->startSection('content');
 <!-- CTA -->
 <section>
     <div class="cta-section">
-        <h2>Ready to Start Your Journey?</h2>
-        <p>Join thousands of students who have successfully secured admissions and scholarships at top universities worldwide.</p>
-        <a href="/register" class="btn btn-primary btn-lg">Sign Up Free</a>
+        <?php if ($auth->check()): ?>
+            <h2>Welcome back, <?= htmlspecialchars(explode(' ', $auth->user()['name'])[0]) ?>!</h2>
+            <p>Continue your journey — track your applications and explore new opportunities.</p>
+            <a href="/dashboard" class="btn btn-primary btn-lg">Go to Dashboard</a>
+        <?php else: ?>
+            <h2>Ready to Start Your Journey?</h2>
+            <p>Join thousands of students who have successfully secured admissions and scholarships at top universities worldwide.</p>
+            <a href="/register" class="btn btn-primary btn-lg">Sign Up Free</a>
+        <?php endif; ?>
     </div>
 </section>
 

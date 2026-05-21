@@ -20,8 +20,7 @@ function isActive($path, $currentUri) {
 <header class="navbar">
     <div class="container navbar-inner">
         <a href="/" class="navbar-brand">
-            <span class="navbar-brand-logo">EP</span>
-            <span>EduPath</span>
+            <img src="/images/edupath-logo.png" alt="EduPath" class="navbar-logo">
         </a>
 
         <nav>
@@ -73,9 +72,17 @@ function isActive($path, $currentUri) {
                     <input type="hidden" name="_csrf_token" value="<?= htmlspecialchars($csrf_token) ?>">
                     <button type="submit" class="btn btn-secondary btn-sm">Logout</button>
                 </form>
-            <?php else: ?>
-                <a href="/login" class="btn btn-secondary btn-sm desktop-only">Log In</a>
-                <a href="/register" class="btn btn-primary btn-sm">Get Started</a>
+            <?php else: 
+                $onAuthPage = in_array($currentUri, ['/login', '/register']);
+            ?>
+                <?php if (!$onAuthPage): ?>
+                    <a href="/login" class="btn btn-secondary btn-sm desktop-only">Log In</a>
+                    <a href="/register" class="btn btn-primary btn-sm">Get Started</a>
+                <?php elseif ($currentUri === '/login'): ?>
+                    <a href="/register" class="btn btn-primary btn-sm">Get Started</a>
+                <?php else: ?>
+                    <a href="/login" class="btn btn-secondary btn-sm desktop-only">Log In</a>
+                <?php endif; ?>
             <?php endif; ?>
 
             <button class="mobile-toggle" aria-label="Menu">

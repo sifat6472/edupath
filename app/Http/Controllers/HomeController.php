@@ -11,6 +11,7 @@ class HomeController extends Controller
 {
     public function index(): string
     {
+        
         $db = Database::getInstance();
         $programRepo = new ProgramRepository();
         $scholarRepo = new ScholarshipRepository();
