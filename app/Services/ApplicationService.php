@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+
 use App\Repositories\ApplicationRepository;
 use App\Repositories\ProgramRepository;
 use App\Repositories\ScholarshipRepository;
@@ -11,6 +12,7 @@ use App\Repositories\NotificationRepository;
  */
 class ApplicationService
 {
+
     private ApplicationRepository $appRepo;
     private ProgramRepository $programRepo;
     private ScholarshipRepository $scholarRepo;
@@ -18,17 +20,21 @@ class ApplicationService
 
     public function __construct()
     {
+
         $this->appRepo = new ApplicationRepository();
         $this->programRepo = new ProgramRepository();
         $this->scholarRepo = new ScholarshipRepository();
         $this->notifRepo = new NotificationRepository();
+
     }
 
     public function submitProgramApplication(int $userId, int $programId, array $data): int
     {
         $program = $this->programRepo->find($programId);
         if (!$program) {
+
             throw new \Exception('Program not found');
+
         }
 
         $appData = [
@@ -71,6 +77,7 @@ class ApplicationService
         }
 
         $appData = [
+
             'user_id' => $userId,
             'scholarship_id' => $scholarshipId,
             'type' => 'scholarship',
@@ -99,23 +106,30 @@ class ApplicationService
         return $appId;
     }
 
+
     public function checkEligibility(array $scholarship, array $userData): array
     {
         $eligible = true;
         $reasons = [];
 
         // Sample eligibility logic
+
         if (!empty($userData['gpa']) && (float)$userData['gpa'] < 3.0) {
+
             $eligible = false;
             $reasons[] = 'Minimum GPA of 3.0 required';
+
         }
 
         if (empty($userData['current_education'])) {
+
             $eligible = false;
             $reasons[] = "Education background required";
+
         }
 
         return [
+
             'eligible' => $eligible,
             'reasons' => $reasons,
         ];
