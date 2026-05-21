@@ -82,15 +82,15 @@ h4 { font-size: 1.25rem; }
 .text-primary { color: var(--primary); }
 .text-accent { color: var(--accent); }
 
-/* === Navbar === */
+/* === Navbar (dark) === */
 .navbar {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(12, 30, 92, 0.95);
     backdrop-filter: saturate(180%) blur(16px);
     -webkit-backdrop-filter: saturate(180%) blur(16px);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     transition: all 0.3s ease;
 }
 .navbar-inner {
@@ -126,14 +126,14 @@ h4 { font-size: 1.25rem; }
     list-style: none;
 }
 .navbar-nav a {
-    color: var(--text);
+    color: rgba(255, 255, 255, 0.85);
     font-weight: 500;
     font-size: 0.95rem;
     position: relative;
     transition: color 0.2s;
 }
 .navbar-nav a.active,
-.navbar-nav a:hover { color: var(--accent); }
+.navbar-nav a:hover { color: #ffffff; }
 .navbar-nav a.active::after {
     content: '';
     position: absolute;
@@ -141,7 +141,7 @@ h4 { font-size: 1.25rem; }
     left: 0;
     right: 0;
     height: 2px;
-    background: var(--accent);
+    background: #ffffff;
     border-radius: 2px;
 }
 .navbar-actions {
@@ -1184,4 +1184,170 @@ select.form-control {
     .cta-section { margin: 30px 16px; padding: 50px 24px; }
     .hero-stats { gap: 20px; }
     .container { padding: 0 16px; }
+}
+
+/* === Navbar Logo === */
+.navbar-logo {
+    height: 38px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* Footer logo */
+.footer-logo {
+    height: 36px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.95;
+}
+
+/* === Hero images (real photos) === */
+.hero-image-main {
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-blue-soft);
+}
+.hero-image-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-image-sub {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    width: 60%;
+    justify-self: end;
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg-blue-soft);
+}
+.hero-image-sub img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-image-main::after,
+.hero-image-sub::after {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .navbar-logo { height: 32px; }
+}
+/* === Navbar Logo (white version for dark navbar) === */
+.navbar-logo {
+    height: 38px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+@media (max-width: 640px) {
+    .navbar-logo { height: 32px; }
+}
+
+/* Footer logo stays white too */
+.footer-logo {
+    height: 36px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.95;
+}
+
+/* === Hero images (real photos) === */
+.hero-image-main {
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-blue-soft);
+}
+.hero-image-main img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-image-sub {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    width: 60%;
+    justify-self: end;
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg-blue-soft);
+}
+.hero-image-sub img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-image-main::after,
+.hero-image-sub::after { display: none; }
+
+/* === OPTION 4: solid blue button turns white on hover === */
+/* Default hover everywhere — darken (safe on white backgrounds) */
+.btn-primary:hover {
+    background: var(--primary);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+}
+
+/* White-fill hover ONLY where the background is dark/blue */
+.navbar .btn-primary:hover {
+    background: #ffffff;
+    color: var(--primary);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.25);
+}
+
+/* Navbar buttons need to read on the dark background */
+.navbar .btn-secondary {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+.navbar .btn-secondary:hover {
+    background: #ffffff;
+    color: var(--primary);
+    border-color: #ffffff;
+}
+
+/* Mobile menu bars → white so they show on dark navbar */
+.mobile-toggle span { background: #ffffff; }
+
+/* Notification bell on dark navbar */
+.navbar .notif-bell {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+.navbar .notif-bell:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #ffffff;
+}
+
+/* Mobile dropdown menu keeps a dark background to match */
+@media (max-width: 640px) {
+    .navbar-nav.mobile-open {
+        background: #0c1e5c;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .navbar-nav.mobile-open a { color: rgba(255,255,255,0.85); }
+}
+/* === Navbar links: white rectangle/pill on hover === */
+.navbar-nav a {
+    padding: 7px 14px;
+    border-radius: 8px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+.navbar-nav a:hover {
+    background: #ffffff;
+    color: var(--primary);   /* text turns dark blue so it's readable on white */
+}
+/* Keep the active link readable too */
+.navbar-nav a.active {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+/* Remove the old underline indicator since we now use a pill */
+.navbar-nav a.active::after {
+    display: none;
 }
