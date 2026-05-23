@@ -61,7 +61,11 @@ $view_instance->startSection('content');
                     </div>
 
                     <div class="prof-actions">
-                        <a href="/professors/<?= $p['id'] ?>/contact" class="btn btn-primary <?= $p['accepting_students'] ? '' : 'btn-secondary' ?>" <?= $p['accepting_students'] ? '' : 'aria-disabled="true"' ?>>Contact Now</a>
+                        <?php if ($p['accepting_students']): ?>
+                            <a href="/professors/<?= $p['id'] ?>/contact" class="btn btn-primary">Contact Now</a>
+                        <?php else: ?>
+                            <span class="btn btn-disabled" title="Not accepting students">Not Accepting</span>
+                        <?php endif; ?>
                         <a href="/professors/<?= $p['id'] ?>" class="btn btn-secondary">Profile</a>
                     </div>
                 </div>

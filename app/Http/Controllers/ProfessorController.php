@@ -53,24 +53,41 @@ class ProfessorController extends Controller
     }
 
     public function contact(string $id): string
-    {
-        $professor = $this->repo->findWithDetails((int)$id);
-        if (!$professor) {
-            http_response_code(404);
-            return $this->view('errors.404', ['title' => '404']);
-        }
-
-        return $this->view('professors.contact', [
-            'title' => 'Contact ' . $professor['name'],
-            'professor' => $professor,
-        ]);
+{
+    $professor = $this->repo->findWithDetails((int)$id);
+    if (!$professor) {
+        http_response_code(404);
+        return $this->view('errors.404', ['title' => '404']);
     }
 
+    // Block contact if professor is not accepting students
+    if (empty($professor['accepting_students'])) {
+        \App\Core\Response::flash('error', 'This professor is not currently accepting students.');
+        return $this->redirect('/professors/' . $id);
+    }
+
+    return $this->view('professors.contact', [
+        'title' => 'Contact ' . $professor['name'],
+        'professor' => $professor,
+    ]);
+}
+
     public function sendContact(string $id): string
-    {
+    {   
         $this->validateCsrf();
         $auth = AuthService::getInstance();
         $professor = $this->repo->findWithDetails((int)$id);
+
+        if (!$professor) {
+        http_response_code(404);
+        return $this->view('errors.404', ['title' => '404']);
+        }
+
+    // Block if not accepting
+        if (empty($professor['accepting_students'])) {
+        \App\Core\Response::flash('error', 'This professor is not currently accepting students.');
+        return $this->redirect('/professors/' . $id);
+        }
 
         $data = $this->validate([
             'full_name' => 'required|min:2',

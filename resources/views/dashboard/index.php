@@ -57,9 +57,26 @@ $view_instance->startSection('content');
                         <div class="application-head">
                             <div>
                                 <div class="application-title">
-                                    <?= htmlspecialchars($app['university_name'] ?? $app['scholarship_name'] ?? 'Application') ?>
+                                    <?php
+                                    if ($app['type'] === 'lab') {
+                                        echo htmlspecialchars($app['professor_name'] ?? 'Professor');
+                                    } else {
+                                        echo htmlspecialchars($app['university_name'] ?? $app['scholarship_name'] ?? 'Application');
+                                    }
+                                    ?>
                                 </div>
-                                <div class="application-program"><?= htmlspecialchars($app['program_title'] ?? $app['scholarship_name'] ?? '—') ?></div>
+                                <div class="application-program">
+                                    <?php
+                                    if ($app['type'] === 'program') {
+                                        echo htmlspecialchars($app['program_title'] ?? '—');
+                                    } elseif ($app['type'] === 'scholarship') {
+                                        echo htmlspecialchars($app['scholarship_name'] ?? 'Scholarship Application');
+                                    } else {
+                                        $labInfo = trim(($app['professor_department'] ?? '') . ' · ' . ($app['professor_university'] ?? ''), ' ·');
+                                        echo '📧 Lab Inquiry — ' . htmlspecialchars($labInfo ?: ($app['professor_research'] ?? 'Research Lab'));
+                                    }
+                                    ?>
+                                </div>
                             </div>
                             <span class="status-badge status-<?= htmlspecialchars($app['status']) ?>"><?= htmlspecialchars($app['status']) ?></span>
                         </div>
@@ -74,6 +91,8 @@ $view_instance->startSection('content');
                             <span>🗓 Deadline: <?= $app['deadline'] ? htmlspecialchars(date('m/d/Y', strtotime($app['deadline']))) : '—' ?></span>
                             <?php if ($app['program_id']): ?>
                                 <a href="/programs/<?= $app['program_id'] ?>">View Details →</a>
+                            <?php elseif ($app['type'] === 'lab' && $app['professor_id']): ?>
+                                <a href="/professors/<?= $app['professor_id'] ?>">View Professor →</a>
                             <?php endif; ?>
                         </div>
                     </div>

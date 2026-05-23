@@ -83,7 +83,11 @@ $view_instance->startSection('content');
             <?php endif; ?>
 
             <div style="margin-top:24px">
-                <a href="/professors/<?= $professor['id'] ?>/contact" class="btn btn-primary btn-lg">Contact Now</a>
+                <?php if ($professor['accepting_students']): ?>
+                    <a href="/professors/<?= $professor['id'] ?>/contact" class="btn btn-primary btn-lg">Contact Now</a>
+                <?php else: ?>
+                    <span class="btn btn-disabled btn-lg" title="Not accepting students">Not Accepting Students</span>
+                <?php endif; ?>
             </div>
         </div>
     </div>
