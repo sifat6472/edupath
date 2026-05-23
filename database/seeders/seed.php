@@ -92,6 +92,7 @@ $professors = [
     [null, 2, 'Dr. Robert Kim', 'Professor of Computer Science', 'CS Department', 'rkim@stanford.edu', 'Natural Language Processing', 187, 1, 'NLP and large language model researcher.'],
     [null, 2, 'Dr. Emily Watson', 'Assistant Professor', 'CS Department', 'ewatson@stanford.edu', 'Reinforcement Learning', 67, 1, 'RL applications in real-world systems.'],
     [null, 3, 'Dr. Alan Turing II', 'Professor', 'Computer Lab', 'aturing@cam.ac.uk', 'Theoretical CS, Quantum Computing', 211, 1, 'Quantum computing pioneer at Cambridge.'],
+    [null, 3, 'Dr. Chandra Banik', 'Professor', 'Computer Lab', 'tahmeed222215@bscse.uiu.ac.bd', 'Theoretical CS, Quantum Computing', 211, 1, 'Quantum computing pioneer at United International University.'],
 ];
 $stmt = $pdo->prepare("INSERT INTO professors (user_id, university_id, name, title, department, email, research_area, publications, accepting_students, bio) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 foreach ($professors as $p) $stmt->execute($p);
@@ -104,6 +105,7 @@ $labs = [
     [4, 'Stanford NLP Group', 'Leading NLP research worldwide.', 1, 'OpenAI, Anthropic', 'LLMs, Language Understanding', 4],
     [5, 'RL Systems Lab', 'Real-world reinforcement learning applications.', 1, 'NSF', 'RL, Robotics', 2],
     [6, 'Quantum Computing Lab', 'Quantum algorithms and hardware.', 1, 'EPSRC, IBM Quantum', 'Quantum Computing', 1],
+    [7, 'Quantum Computing Lab', 'Quantum algorithms and hardware.', 1, 'EPSRC, IBM Quantum', 'Quantum Computing', 1],
 ];
 $stmt = $pdo->prepare("INSERT INTO laboratories (professor_id, name, description, funded, funding_source, research_focus, open_positions) VALUES (?, ?, ?, ?, ?, ?, ?)");
 foreach ($labs as $l) $stmt->execute($l);
