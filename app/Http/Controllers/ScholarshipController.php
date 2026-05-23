@@ -19,21 +19,33 @@ class ScholarshipController extends Controller
     }
 
     public function index(): string
-    {
-        $filters = [
-            'q' => Request::input('q', ''),
-            'country' => Request::input('country', ''),
-            'study_level' => Request::input('study_level', ''),
-        ];
+{
+    $filters = [
+        'q' => Request::input('q', ''),
+        'country' => Request::input('country', ''),
+        'study_level' => Request::input('study_level', ''),
+    ];
 
-        $scholarships = $this->repo->search($filters);
+    $scholarships = $this->repo->search($filters);
 
-        return $this->view('scholarships.index', [
-            'title' => 'Scholarships',
-            'scholarships' => $scholarships,
-            'filters' => $filters,
-        ]);
+    $appliedIds = [];
+    $auth = \App\Services\AuthService::getInstance();
+    if ($auth->check()) {
+        $db = \App\Core\Database::getInstance();
+        $rows = $db->fetchAll(
+            "SELECT scholarship_id FROM applications WHERE user_id = ? AND type = 'scholarship' AND scholarship_id IS NOT NULL",
+            [$auth->id()]
+        );
+        $appliedIds = array_column($rows, 'scholarship_id');
     }
+
+    return $this->view('scholarships.index', [
+        'title' => 'Scholarships',
+        'scholarships' => $scholarships,
+        'filters' => $filters,
+        'appliedIds' => $appliedIds,
+    ]);
+}
 
     public function show(string $id): string
     {
