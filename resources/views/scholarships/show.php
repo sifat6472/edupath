@@ -18,7 +18,11 @@ $requirements = array_filter(array_map('trim', explode(';', $scholarship['requir
                     </div>
                     <div class="text-secondary"><?= htmlspecialchars($scholarship['provider']) ?></div>
                 </div>
-                <a href="/scholarships/<?= $scholarship['id'] ?>/apply" class="btn btn-primary">Apply Now</a>
+                <?php if (!empty($hasApplied)): ?>
+                    <span class="applied-badge">✓ Applied</span>
+                <?php else: ?>
+                    <a href="/scholarships/<?= $scholarship['id'] ?>/apply" class="btn btn-primary">Apply Now</a>
+                <?php endif; ?>
             </div>
 
             <div class="detail-grid-2">
@@ -76,7 +80,11 @@ $requirements = array_filter(array_map('trim', explode(';', $scholarship['requir
             <?php endif; ?>
 
             <div style="margin-top:20px">
-                <a href="/scholarships/<?= $scholarship['id'] ?>/apply" class="btn btn-primary btn-lg">Apply Now</a>
+                <?php if (!empty($hasApplied)): ?>
+                    <span class="applied-badge">✓ Applied</span>
+                <?php else: ?>
+                    <a href="/scholarships/<?= $scholarship['id'] ?>/apply" class="btn btn-primary btn-lg">Apply Now</a>
+                <?php endif; ?>
             </div>
         </div>
     </div>

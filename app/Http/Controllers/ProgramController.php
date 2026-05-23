@@ -62,28 +62,48 @@ class ProgramController extends Controller
         $isSaved = false;
         if ($auth->check()) {
             $isSaved = (new SavedItemRepository())->isSaved($auth->id(), 'program', (int)$id);
+
+            $existing = \App\Core\Database::getInstance()->fetchOne(
+            "SELECT id FROM applications WHERE user_id = ? AND program_id = ? AND type = 'program'",
+            [$auth->id(), (int)$id]
+        );
+        $hasApplied = $existing !== null;
         }
 
         return $this->view('programs.show', [
             'title' => $program['title'],
             'program' => $program,
             'isSaved' => $isSaved,
+            'hasApplied' => $hasApplied,
         ]);
     }
 
     public function apply(string $id): string
-    {
-        $program = $this->repo->findWithUniversity((int) $id);
-        if (!$program) {
-            http_response_code(404);
-            return $this->view('errors.404', ['title' => '404']);
-        }
-
-        return $this->view('programs.apply', [
-            'title' => 'Apply to ' . $program['title'],
-            'program' => $program,
-        ]);
+{
+    $program = $this->repo->findWithUniversity((int) $id);
+    if (!$program) {
+        http_response_code(404);
+        return $this->view('errors.404', ['title' => '404']);
     }
+
+    // If already applied, redirect to applications page
+    $auth = AuthService::getInstance();
+    if ($auth->check()) {
+        $existing = \App\Core\Database::getInstance()->fetchOne(
+            "SELECT id FROM applications WHERE user_id = ? AND program_id = ? AND type = 'program'",
+            [$auth->id(), (int)$id]
+        );
+        if ($existing) {
+            \App\Core\Response::flash('error', 'You have already applied to this program.');
+            return $this->redirect('/applications');
+        }
+    }
+
+    return $this->view('programs.apply', [
+        'title' => 'Apply to ' . $program['title'],
+        'program' => $program,
+    ]);
+}
 
     public function submitApplication(string $id): string
     {
