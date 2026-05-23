@@ -27,9 +27,18 @@ class ApplicationService
     public function submitProgramApplication(int $userId, int $programId, array $data): int
     {
         $program = $this->programRepo->find($programId);
-        if (!$program) {
-            throw new \Exception('Program not found');
-        }
+    if (!$program) {
+        throw new \Exception('Program not found');
+    }
+
+    // Prevent duplicate applications
+    $existing = \App\Core\Database::getInstance()->fetchOne(
+        "SELECT id FROM applications WHERE user_id = ? AND program_id = ? AND type = 'program'",
+        [$userId, $programId]
+    );
+    if ($existing) {
+        throw new \Exception('You have already applied to this program.');
+    }
 
         $appData = [
             'user_id' => $userId,
@@ -68,6 +77,15 @@ class ApplicationService
         $scholarship = $this->scholarRepo->find($scholarshipId);
         if (!$scholarship) {
             throw new \Exception('Scholarship not found');
+        }
+
+        // Prevent duplicate applications
+        $existing = \App\Core\Database::getInstance()->fetchOne(
+            "SELECT id FROM applications WHERE user_id = ? AND scholarship_id = ? AND type = 'scholarship'",
+            [$userId, $scholarshipId]
+        );
+        if ($existing) {
+            throw new \Exception('You have already applied to this scholarship.');
         }
 
         $appData = [

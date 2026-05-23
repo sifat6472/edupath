@@ -14,7 +14,11 @@ $requirements = array_filter(array_map('trim', explode(';', $program['requiremen
                     <h2 style="font-size:1.6rem;margin-bottom:4px"><?= htmlspecialchars($program['title']) ?></h2>
                     <div class="text-secondary"><?= htmlspecialchars($program['university_name']) ?></div>
                 </div>
-                <a href="/programs/<?= $program['id'] ?>/apply" class="btn btn-primary">Apply Now</a>
+                <?php if (!empty($hasApplied)): ?>
+                    <span class="applied-badge">✓ Applied</span>
+                <?php else: ?>
+                    <a href="/programs/<?= $program['id'] ?>/apply" class="btn btn-primary">Apply Now</a>
+                <?php endif; ?>
             </div>
 
             <div class="detail-grid-2">
@@ -61,7 +65,11 @@ $requirements = array_filter(array_map('trim', explode(';', $program['requiremen
             <?php endif; ?>
 
             <div style="display:flex;gap:12px;margin-top:24px">
-                <a href="/programs/<?= $program['id'] ?>/apply" class="btn btn-primary">Apply Now</a>
+                <?php if (!empty($hasApplied)): ?>
+                    <span class="applied-badge">✓ Applied</span>
+                <?php else: ?>
+                    <a href="/programs/<?= $program['id'] ?>/apply" class="btn btn-primary">Apply Now</a>
+                <?php endif; ?>
                 <?php $auth = \App\Services\AuthService::getInstance(); if ($auth->check()): ?>
                     <button class="btn btn-secondary save-btn <?= $isSaved ? 'active' : '' ?>" data-url="/programs/<?= $program['id'] ?>/save">
                         <?= $isSaved ? '★ Saved' : '☆ Save' ?>

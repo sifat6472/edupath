@@ -48,32 +48,56 @@ class ScholarshipController extends Controller
 }
 
     public function show(string $id): string
-    {
-        $scholarship = $this->repo->find((int)$id);
-        if (!$scholarship) {
-            http_response_code(404);
-            return $this->view('errors.404', ['title' => '404']);
-        }
-
-        return $this->view('scholarships.show', [
-            'title' => $scholarship['name'],
-            'scholarship' => $scholarship,
-        ]);
+{
+    $scholarship = $this->repo->find((int)$id);
+    if (!$scholarship) {
+        http_response_code(404);
+        return $this->view('errors.404', ['title' => '404']);
     }
+
+    $hasApplied = false;
+    $auth = \App\Services\AuthService::getInstance();
+    if ($auth->check()) {
+        $existing = \App\Core\Database::getInstance()->fetchOne(
+            "SELECT id FROM applications WHERE user_id = ? AND scholarship_id = ? AND type = 'scholarship'",
+            [$auth->id(), (int)$id]
+        );
+        $hasApplied = $existing !== null;
+    }
+
+    return $this->view('scholarships.show', [
+        'title' => $scholarship['name'],
+        'scholarship' => $scholarship,
+        'hasApplied' => $hasApplied,
+    ]);
+}
 
     public function apply(string $id): string
-    {
-        $scholarship = $this->repo->find((int)$id);
-        if (!$scholarship) {
-            http_response_code(404);
-            return $this->view('errors.404', ['title' => '404']);
-        }
-
-        return $this->view('scholarships.apply', [
-            'title' => 'Apply: ' . $scholarship['name'],
-            'scholarship' => $scholarship,
-        ]);
+{
+    $scholarship = $this->repo->find((int)$id);
+    if (!$scholarship) {
+        http_response_code(404);
+        return $this->view('errors.404', ['title' => '404']);
     }
+
+    // If already applied, redirect to applications page
+    $auth = \App\Services\AuthService::getInstance();
+    if ($auth->check()) {
+        $existing = \App\Core\Database::getInstance()->fetchOne(
+            "SELECT id FROM applications WHERE user_id = ? AND scholarship_id = ? AND type = 'scholarship'",
+            [$auth->id(), (int)$id]
+        );
+        if ($existing) {
+            \App\Core\Response::flash('error', 'You have already applied to this scholarship.');
+            return $this->redirect('/applications');
+        }
+    }
+
+    return $this->view('scholarships.apply', [
+        'title' => 'Apply: ' . $scholarship['name'],
+        'scholarship' => $scholarship,
+    ]);
+}
 
     public function submitApplication(string $id): string
     {
