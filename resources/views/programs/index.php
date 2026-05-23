@@ -1,6 +1,7 @@
 <?php
 /** @var array $programs */
 /** @var array $filters */
+/** @var array $appliedIds */
 $view_instance->extend('layouts.app');
 $view_instance->startSection('content');
 ?>
@@ -55,8 +56,13 @@ $view_instance->startSection('content');
                         <?php endif; ?>
                     </div>
                     <div class="list-card-actions">
-                        <a href="/programs/<?= $p['id'] ?>/apply" class="btn btn-primary">Apply Now</a>
-                        <a href="/programs/<?= $p['id'] ?>" class="btn btn-secondary">View Details</a>
+                        <?php if (in_array($p['id'], $appliedIds ?? [])): ?>
+                            <span class="applied-badge">✓ Applied</span>
+                            <a href="/programs/<?= $p['id'] ?>" class="btn btn-secondary">View Details</a>
+                        <?php else: ?>
+                            <a href="/programs/<?= $p['id'] ?>/apply" class="btn btn-primary">Apply Now</a>
+                            <a href="/programs/<?= $p['id'] ?>" class="btn btn-secondary">View Details</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             <?php endforeach; endif; ?>

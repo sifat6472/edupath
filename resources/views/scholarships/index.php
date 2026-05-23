@@ -51,8 +51,13 @@ $view_instance->startSection('content');
                         <span class="scholarship-tag"><?= htmlspecialchars($s['scholarship_type']) ?></span>
                     </div>
                     <div class="list-card-actions">
-                        <a href="/scholarships/<?= $s['id'] ?>/apply" class="btn btn-primary">Apply Now</a>
-                        <a href="/scholarships/<?= $s['id'] ?>" class="btn btn-secondary">View Details</a>
+                        <?php if (in_array($s['id'], $appliedIds ?? [])): ?>
+                            <span class="applied-badge">✓ Applied</span>
+                            <a href="/scholarships/<?= $s['id'] ?>" class="btn btn-secondary">View Details</a>
+                        <?php else: ?>
+                            <a href="/scholarships/<?= $s['id'] ?>/apply" class="btn btn-primary">Apply Now</a>
+                            <a href="/scholarships/<?= $s['id'] ?>" class="btn btn-secondary">View Details</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             <?php endforeach; endif; ?>

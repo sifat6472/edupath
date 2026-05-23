@@ -20,22 +20,35 @@ class ProgramController extends Controller
     }
 
     public function index(): string
-    {
-        $filters = [
-            'q' => Request::input('q', ''),
-            'country' => Request::input('country', ''),
-            'field' => Request::input('field', ''),
-            'degree_level' => Request::input('degree_level', ''),
-        ];
+{
+    $filters = [
+        'q' => Request::input('q', ''),
+        'country' => Request::input('country', ''),
+        'field' => Request::input('field', ''),
+        'degree_level' => Request::input('degree_level', ''),
+    ];
 
-        $programs = $this->repo->search($filters);
+    $programs = $this->repo->search($filters);
 
-        return $this->view('programs.index', [
-            'title' => 'Explore Programs',
-            'programs' => $programs,
-            'filters' => $filters,
-        ]);
+    // Find which programs this user already applied to
+    $appliedIds = [];
+    $auth = AuthService::getInstance();
+    if ($auth->check()) {
+        $db = \App\Core\Database::getInstance();
+        $rows = $db->fetchAll(
+            "SELECT program_id FROM applications WHERE user_id = ? AND type = 'program' AND program_id IS NOT NULL",
+            [$auth->id()]
+        );
+        $appliedIds = array_column($rows, 'program_id');
     }
+
+    return $this->view('programs.index', [
+        'title' => 'Explore Programs',
+        'programs' => $programs,
+        'filters' => $filters,
+        'appliedIds' => $appliedIds,
+    ]);
+}
 
     public function show(string $id): string
     {
