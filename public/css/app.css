@@ -969,10 +969,15 @@ select.form-control {
 }
 .prof-meta-row .icon { color: var(--text-muted); }
 .prof-status {
-    padding: 4px 10px;
+    padding: 4px 12px;
     border-radius: 999px;
     font-size: 0.72rem;
     font-weight: 600;
+    white-space: nowrap;
+    align-self: flex-start;   /* don't stretch to fill the row */
+    flex-shrink: 0;           /* keep its natural size */
+    height: fit-content;
+    display: inline-block;
 }
 .status-accepting { background: #d1fae5; color: #065f46; }
 .status-not-accepting { background: #fee2e2; color: #991b1b; }

@@ -17,6 +17,9 @@ $view_instance->startSection('content');
                 Accepting Students Only
             </label>
             <button type="submit" class="btn btn-primary">Filter</button>
+            <?php if (!empty($filters['q']) || !empty($filters['accepting']) || !empty($filters['research_area'])): ?>
+                <a href="/professors" class="btn btn-secondary">Reset Filters</a>
+            <?php endif; ?>
         </form>
 
         <p class="text-secondary" style="margin-bottom:16px"><?= count($professors) ?> professor<?= count($professors) === 1 ? '' : 's' ?> found</p>

@@ -24,6 +24,9 @@ $view_instance->startSection('content');
                 <option value="Masters" <?= $filters['study_level'] === 'Masters' ? 'selected' : '' ?>>Masters</option>
             </select>
             <button type="submit" class="btn btn-primary">Filter</button>
+            <?php if (!empty($filters['q']) || !empty($filters['country']) || !empty($filters['study_level'])): ?>
+                <a href="/scholarships" class="btn btn-secondary">Reset Filters</a>
+            <?php endif; ?>
         </form>
 
         <div>
