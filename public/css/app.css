@@ -1371,3 +1371,18 @@ select.form-control {
     color: #065f46;
     border: 1px solid #a7f3d0;
 }
+
+/* Disabled button (e.g., professor not accepting) */
+.btn-disabled {
+    background: #e2e8f0;
+    color: #94a3b8;
+    cursor: not-allowed;
+    border: 1px solid #e2e8f0;
+    pointer-events: none;
+}
+.btn-disabled:hover {
+    background: #e2e8f0;
+    color: #94a3b8;
+    transform: none;
+    box-shadow: none;
+}

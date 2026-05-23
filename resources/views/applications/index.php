@@ -19,17 +19,28 @@ $view_instance->startSection('content');
                     <a href="/programs" class="btn btn-primary" style="margin-top:12px">Browse Programs</a>
                 </div>
             <?php else: foreach ($applications as $app): ?>
-                <div class="application-item">
-                    <div class="application-head">
+                <div class="application-head">
                         <div>
                             <div class="application-title">
-                                <?= htmlspecialchars($app['university_name'] ?? $app['scholarship_name'] ?? 'Application') ?>
+                                <?php
+                                if ($app['type'] === 'lab') {
+                                    echo htmlspecialchars($app['professor_name'] ?? 'Professor');
+                                } else {
+                                    echo htmlspecialchars($app['university_name'] ?? $app['scholarship_name'] ?? 'Application');
+                                }
+                                ?>
                             </div>
                             <div class="application-program">
                                 <?php
-                                if ($app['type'] === 'program') echo htmlspecialchars($app['program_title'] ?? '—');
-                                elseif ($app['type'] === 'scholarship') echo 'Scholarship Application';
-                                else echo 'Lab Inquiry';
+                                if ($app['type'] === 'program') {
+                                    echo htmlspecialchars($app['program_title'] ?? '—');
+                                } elseif ($app['type'] === 'scholarship') {
+                                    echo htmlspecialchars($app['scholarship_name'] ?? 'Scholarship Application');
+                                } else {
+                                    // Lab inquiry — show lab/department + university
+                                    $labInfo = trim(($app['professor_department'] ?? '') . ' · ' . ($app['professor_university'] ?? ''), ' ·');
+                                    echo '📧 Lab Inquiry — ' . htmlspecialchars($labInfo ?: ($app['professor_research'] ?? 'Research Lab'));
+                                }
                                 ?>
                             </div>
                         </div>
